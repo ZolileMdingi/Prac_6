@@ -7,7 +7,6 @@ from datetime import datetime
 
 # Connection Data
 host = '192.168.137.20'
-#host = '127.0.0.1'
 port = 1234
 
 # Starting Server
@@ -25,6 +24,7 @@ data =[]
 
 
 ### The WebInterface part
+### This is the code responsible for displaying the HTML webInterface
 app = Flask(__name__)
 
 @app.route("/", methods=['GET', 'POST'])
@@ -34,12 +34,10 @@ def index():
     global status
     if request.method == 'POST':
         if request.form.get('SensorOn') == 'SensorOn':
-            # pass
             button_status = "SensorOn"
             client.send(button_status.encode())
             print(button_status)
         elif  request.form.get('SensorOff') == 'SensorOff':
-            # pass # do something else
             button_status = "SensorOff"
             client.send(button_status.encode())
             print(button_status)
@@ -51,7 +49,6 @@ def index():
                 status = 'OFF'
             return render_template("hello.html", status=status)
         elif  request.form.get('LogCheck') == 'LogCheck':
-            # pass # do something else
             print("LogChek")
             return render_template("hello.html", headings=headings, data=data)
         elif  request.form.get('LogDownload') == 'LogDownload':
@@ -67,47 +64,41 @@ def index():
             path = os.getcwd()+"/sensorlog.csv"
             return send_file(path, as_attachment=True)
         elif  request.form.get('Exit()') == 'Exit()':
-            # pass # do something else
             print("Exit()")
         else:
-            # pass # unknown
             return render_template("hello.html")
     elif request.method == 'GET':
-        # return render_template("index.html")
         print("No Post Back Call")
     return render_template("hello.html")
 
-# Handling Messages From Clients
+# Handle Incoming messages and Sensor data from the client
 def handle(client):
     global data
     while True:
-                message = client.recv(2048).decode()
-                data.append(message)
-                print(message)
+            message = client.recv(2048).decode()
+            data.append(message)
+            print(message)
                 
 
-
-        
-
-# Receiving / Listening Function
+# Listens for the client to connect
 def receive():
-    #
-    #why is this while tru
     while(True):
         # Accept Connection
         global client
         client, address = server.accept()
         print("Connected with {}".format(str(address)))
 
-        # Request And Store Nickname
+        # sends a SensorOff signal at the start to tell the client to wait for a command before it can start sending the data
         global button_status
         client.send(button_status.encode('ascii'))
         # Start Handling Thread For Client
+        # This threads handles receiving data as it continually waits for data to come.
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
     
 
 
 if __name__ == '__main__':
+    # This threads handles running the webInterface
     threading.Thread(target=lambda: app.run(host='0.0.0.0', port=80, debug=True, use_reloader=False)).start()
     receive()

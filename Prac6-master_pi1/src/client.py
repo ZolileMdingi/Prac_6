@@ -19,7 +19,6 @@ seconds_change = 10 #default runtime change
 theSocket = None
 sending = True
 TCP_IP = '192.168.137.20'
-#TCP_IP = '127.0.0.1'
 TCP_PORT = 1234
 BUFFER_SIZE = 2048
 
@@ -29,18 +28,22 @@ def temp_in_C(voltageVal):
     MCP9700_OFFSET = 0.5#also in datasheet
     return round((voltageVal-MCP9700_OFFSET)/MCP9700_T_COEFF )# degree celsuis 
 
+# gets channelValue
 def lrd_channelValue():
     return ldr_channel.value
 
+# gets tempValue
 def tempValue():
     value = temp_channel.value
     return value, temp_in_C(temp_channel.voltage)
 
+# connects to the tcp_server and returns a a communication object
 def connectServer():
     socketVal = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     socketVal.connect((TCP_IP, TCP_PORT))
     return socketVal
 
+# This function is responsible for receiving commands from the server
 def handleCommands():
     global sending
     while(True):
@@ -60,8 +63,9 @@ def handleCommands():
 if __name__ == '__main__':
     theSocket = connectServer()
 
-    thread =  threading.Thread(target=handleCommands,args=())
+    thread =  threading.Thread(target=handleCommands,args=()) # This thread makes sure that the clients is always listening to commands
     thread.start()
+    # Sending the sensored data from the ldr and the tempReading to the server with the time stamp
     while(True):
         while(sending):
             ldr = lrd_channelValue()
