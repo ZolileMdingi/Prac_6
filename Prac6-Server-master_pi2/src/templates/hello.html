@@ -18,6 +18,11 @@
         <input type="submit" value="Exit()" name="Exit()"/>
 
     </form>
+    {% if status == 'ON' %}
+        <h1 style="color:lightgreen;">{{status}}</h1>
+    {% else %}
+        <h1 style="color:red;">{{status}}</h1>
+    {% endif %}
     <table class="table">
         <tr class="table__header">
             {% for header in headings %}
