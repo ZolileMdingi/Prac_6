@@ -69,9 +69,11 @@
 #             time.sleep(10)
 #             #if not data: break
             
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, send_file
 import socket
 import threading
+import os
+import csv
 from datetime import datetime
 
 # Connection Data
@@ -118,8 +120,17 @@ def index():
             print("LogChek")
             return render_template("hello.html", headings=headings, data=data)
         elif  request.form.get('LogDownload') == 'LogDownload':
-            # pass # do something else
+            with open('sensorlog.csv', 'w', encoding='UTF8', newline='') as f:
+                writer = csv.writer(f)
+                # Writing the header
+                writer.writerow(headings)
+
+                # writing the body data
+                for row in data:
+                    writer.writerow(row)
             print("LogDownload")
+            path = os.getcwd()+"/sensorlog.csv"
+            return send_file(path, as_attachment=True)
         elif  request.form.get('Exit()') == 'Exit()':
             # pass # do something else
             print("Exit()")
