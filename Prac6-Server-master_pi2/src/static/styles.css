@@ -43,11 +43,16 @@ body {
     padding-left: 8px;
 }
 
-/****Styling Buttons****/
-/* <!-- HTML !-->
-<button class="button-17" role="button">Button 17</button> */
+.h1 {
+    padding: 8px;
+    margin: 1rem;
+}
 
-/* CSS */
+.h1 h1 {
+    margin: 0;
+}
+
+/****Styling Buttons****/
 .button{
   align-items: center;
   appearance: none;
