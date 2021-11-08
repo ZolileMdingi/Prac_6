@@ -47,10 +47,10 @@ def index():
                 status = 'ON'
             else:
                 status = 'OFF'
-            return render_template("hello.html", status=status)
+            return render_template("hello.html", status=status, button_status=button_status)
         elif  request.form.get('LogCheck') == 'LogCheck':
             print("LogChek")
-            return render_template("hello.html", headings=headings, data=data)
+            return render_template("hello.html", headings=headings, data=data[-10:], button_status=button_status)
         elif  request.form.get('LogDownload') == 'LogDownload':
             with open('sensorlog.csv', 'w', encoding='UTF8', newline='') as f:
                 writer = csv.writer(f)
@@ -66,10 +66,10 @@ def index():
         elif  request.form.get('Exit()') == 'Exit()':
             print("Exit()")
         else:
-            return render_template("hello.html")
+            return render_template("hello.html", button_status=button_status)
     elif request.method == 'GET':
         print("No Post Back Call")
-    return render_template("hello.html")
+    return render_template("hello.html", button_status=button_status)
 
 # Handle Incoming messages and Sensor data from the client
 def handle(client):

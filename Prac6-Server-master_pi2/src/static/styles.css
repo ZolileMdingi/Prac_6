@@ -15,3 +15,79 @@
 .table__cell {
     padding: 8px;
 }
+
+
+body {
+    font-family: arial;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    outline: dashed 1px black;
+    position: absolute;
+    top:0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.form {
+    margin: 1rem;
+    padding: 8px;
+}
+
+.status {
+    padding-left: 8px;
+}
+
+/****Styling Buttons****/
+/* <!-- HTML !-->
+<button class="button-17" role="button">Button 17</button> */
+
+/* CSS */
+.button{
+  align-items: center;
+  appearance: none;
+  background-color: #121317;
+  border-radius: 24px;
+  border-style: none;
+  box-shadow: rgba(0, 0, 0, .2) 0 3px 5px -1px,rgba(0, 0, 0, .14) 0 6px 10px 0,rgba(0, 0, 0, .12) 0 1px 18px 0;
+  box-sizing: border-box;
+  color: #fff;
+  cursor: pointer;
+  display: inline-flex;
+  fill: currentcolor;
+  font-family: "Google Sans",Roboto,Arial,sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 48px;
+  justify-content: center;
+  letter-spacing: .25px;
+  line-height: normal;
+  max-width: 100%;
+  overflow: visible;
+  padding: 2px 24px;
+  position: relative;
+  text-align: center;
+  text-transform: none;
+  transition: box-shadow 280ms cubic-bezier(.4, 0, .2, 1),opacity 15ms linear 30ms,transform 270ms cubic-bezier(0, 0, .2, 1) 0ms;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  width: auto;
+  will-change: transform,opacity;
+  z-index: 0;
+}
+
+.button:hover {
+  background: #F6F9FE;
+  color: #174ea6;
+}
+
+.button:focus {
+  outline: none;
+  border: 2px solid #4285f4;
+}

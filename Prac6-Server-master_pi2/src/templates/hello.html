@@ -8,51 +8,43 @@
     <link rel="stylesheet" href="/static/styles.css">
 </head>
 <body>
-    <form method="post" action="/">
-
-        <input type="submit" value="SensorOn" name="SensorOn"/>
-        <input type="submit" value="SensorOff" name="SensorOff"/>
-        <input type="submit" value="Status" name="Status"/>
-        <input type="submit" value="LogCheck" name="LogCheck"/>
-        <input type="submit" value="LogDownload" name="LogDownload"/>
-        <input type="submit" value="Exit()" name="Exit()"/>
-
-    </form>
-    {% if status == 'ON' %}
-        <h1 style="color:lightgreen;">{{status}}</h1>
-    {% else %}
-        <h1 style="color:red;">{{status}}</h1>
-    {% endif %}
-    <table class="table">
-        <tr class="table__header">
-            {% for header in headings %}
-            <th class="table__cell">{{ header }}</th>
+    <div class="container">
+        <table class="table">
+            <tr class="table__header">
+                {% for header in headings %}
+                <th class="table__cell">{{ header }}</th>
+                {% endfor %}
+            </tr>
+            {% for row in data %}
+            <tr class="table__row">
+                {% for cell in row %}
+                <td class="table__cell">{{ cell }}</td>
+                {% endfor %}  
+            </tr>
             {% endfor %}
-        </tr>
-        {% for row in data %}
-        <tr class="table__row">
-            {% for cell in row %}
-            <td class="table__cell">{{ cell }}</td>
-            {% endfor %}  
-        </tr>
-        {% endfor %}
-    </table>
+        </table>
+        {% if status == 'ON' %}
+            <h1 style="color:lightgreen;" class="status">{{status}}</h1>
+        {% else %}
+            <h1 style="color:red;" class="status">{{status}}</h1>
+        {% endif %}
+        <form method="post" action="/" class="form">
+
+            {% if button_status == 'SensorOff' %}
+                <input type="submit" value="SensorOn" name="SensorOn" class="button"/>
+                <input type="submit" value="SensorOff" name="SensorOff" class="button" style="background-color: red;"/>
+            {% else %}
+                <input type="submit" value="SensorOn" name="SensorOn" class="button" style="background-color: lightgreen;"/>
+                <input type="submit" value="SensorOff" name="SensorOff" class="button"/>
+            {% endif %}
+            
+            <input type="submit" value="Status" name="Status" class="button"/>
+            <input type="submit" value="LogCheck" name="LogCheck" class="button"/>
+            <input type="submit" value="LogDownload" name="LogDownload" class="button"/>
+            <input type="submit" value="Exit()" name="Exit()" class="button"/>
+    
+        </form>
+        
+    </div>    
 </body>
 </html>
-
-
-<!--<html>
-    <body>
-
-        <form method="post" action="/">
-
-            <input type="submit" value="SensorOn" name="SensorOn"/>
-            <input type="submit" value="SensorOff" name="SensorOff"/>
-            <input type="submit" value="Status" name="Status"/>
-            <input type="submit" value="LogCheck" name="LogCheck"/>
-            <input type="submit" value="LogDownload" name="LogDownload"/>
-            <input type="submit" value="Exit()" name="Exit()"/>
-
-        </form>
-    </body>
-</html>-->
