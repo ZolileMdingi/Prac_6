@@ -1,10 +1,10 @@
-from typing_extensions import get_origin
+import sys
 from flask import Flask, render_template, request, send_file
 import socket
 import threading
 import os
 import csv
-from datetime import datetime, time
+import time
 
 # Connection Data
 host = '192.168.137.20'
@@ -73,6 +73,7 @@ def index():
             button_status = "SensorOff"
             client.send(button_status.encode())
             client.send("exit".encode())
+            sys.exit()
         else:
             return render_template("hello.html", button_status=button_status)
     elif request.method == 'GET':

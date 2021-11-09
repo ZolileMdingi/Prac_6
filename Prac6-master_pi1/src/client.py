@@ -7,7 +7,7 @@ import socket
 import datetime
 import adafruit_mcp3xxx.mcp3008 as MCP
 from adafruit_mcp3xxx.analog_in import AnalogIn
-
+import sys
 
 spi = busio.SPI(clock=board.SCK, MISO=board.MISO, MOSI=board.MOSI) #setup SPI 
 cs = digitalio.DigitalInOut(board.D8) #set up CS/SHDN pin at GPIO pin 8
@@ -55,7 +55,7 @@ def handleCommands():
             sending = False
             theSocket.send('SENDACK'.encode())
         elif data == 'exit':
-            exit()
+            sys.exit()
         elif data == 'Status':
             sending = False
             theSocket.send('ON'.encode())
