@@ -54,6 +54,8 @@ def handleCommands():
         elif data == 'SensorOff':
             sending = False
             theSocket.send('SENDACK'.encode())
+        elif data == 'exit':
+            exit()
         elif data == 'Status':
             sending = False
             theSocket.send('ON'.encode())

@@ -1,9 +1,10 @@
+from typing_extensions import get_origin
 from flask import Flask, render_template, request, send_file
 import socket
 import threading
 import os
 import csv
-from datetime import datetime
+from datetime import datetime, time
 
 # Connection Data
 host = '192.168.137.20'
@@ -21,6 +22,7 @@ button_status = 'SensorOff'
 status = 'OFF'
 headings = ["No.","Date_Time", "Temp_Readings", "LDR_Readings"]
 data =[]
+clientStatus = 'OFF'
 
 
 ### The WebInterface part
@@ -32,6 +34,7 @@ def index():
     print(request.method)
     global button_status
     global status
+    global clientStatus
     if request.method == 'POST':
         if request.form.get('SensorOn') == 'SensorOn':
             button_status = "SensorOn"
@@ -42,21 +45,23 @@ def index():
             client.send(button_status.encode())
             print(button_status)
         elif  request.form.get('Status') == 'Status':
+            client.send("Status".encode())
             print("Status")
-            if button_status == 'SensorOn':
-                status = 'ON'
-            else:
-                status = 'OFF'
+            time.sleep(2)
+            status = clientStatus
+            clientStatus = 'OFF'
             return render_template("hello.html", status=status, button_status=button_status)
         elif  request.form.get('LogCheck') == 'LogCheck':
             print("LogChek")
-            return render_template("hello.html", headings=headings, data=data[-10:], button_status=button_status)
+            if(len(data)>10):
+                return render_template("hello.html", headings=headings, data=data[-10:], button_status=button_status)
+            else:
+                return render_template("hello.html", headings=headings, data=data, button_status=button_status)
         elif  request.form.get('LogDownload') == 'LogDownload':
             with open('sensorlog.csv', 'w', encoding='UTF8', newline='') as f:
                 writer = csv.writer(f)
                 # Writing the header
                 writer.writerow(headings)
-
                 # writing the body data
                 for row in data:
                     writer.writerow(row)
@@ -65,6 +70,9 @@ def index():
             return send_file(path, as_attachment=True)
         elif  request.form.get('Exit()') == 'Exit()':
             print("Exit()")
+            button_status = "SensorOff"
+            client.send(button_status.encode())
+            client.send("exit".encode())
         else:
             return render_template("hello.html", button_status=button_status)
     elif request.method == 'GET':
@@ -74,9 +82,13 @@ def index():
 # Handle Incoming messages and Sensor data from the client
 def handle(client):
     global data
+    global clientStatus
     while True:
             message = client.recv(2048).decode()
-            data.append(message)
+            if(message!='SENDACK' and message!='ON'):
+                data.append(message)
+            if(message=='ON'):
+                clientStatus = 'ON'
             print(message)
                 
 
