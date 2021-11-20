@@ -34,6 +34,10 @@ You can go do the same thing for the [pi2-server]
 ## Alternative to Deploy to your fleet
 Flow this link [deploy to your fleet method 2] or watch [YouTube Tutorial] timestamp 3:23
 
+## A screenshot of the Balena webportal showing both Pis up and running
+<img width="980" alt="balenaFleets" src="https://user-images.githubusercontent.com/62191335/142738862-e085f408-1ec0-4578-b132-668454324121.PNG">
+
+
 [pi2-server]:https://github.com/ZolileMdingi/Prac_6/tree/main/Prac6-Server-master_pi2
 [deploy to your fleet method 2]:https://www.balena.io/docs/learn/deploy/deployment/#:~:text=You%20can%20find%20the%20fleet,run%20git%20push%20balena%20master%20.
 [YouTube Tutorial]:https://youtu.be/Tm4N5GcJRLI
