@@ -1,5 +1,8 @@
 # Pi2 Server-fleet source code
 
+## Watch Application Demostration video of 6 functionality
+[Watch it on YouTube here] alternative [OneDrive]
+
 ## Overview functionality of pi2 server code
 Pi2 is responsible for hosting the web Interface, creating a tcp_server to listen for when the client connects, receive the data that the client is sending, sends commands to the client telling client to send data, turn off the sensor, send status of the sensors, it also generates the sensorlog.csv that it stores all the sensor data it got from client.
 
@@ -45,3 +48,6 @@ Flow this link [deploy to your fleet method 2] or watch [YouTube Tutorial] times
 [deploy to your fleet method 2]:https://www.balena.io/docs/learn/deploy/deployment/#:~:text=You%20can%20find%20the%20fleet,run%20git%20push%20balena%20master%20.
 [YouTube Tutorial]:https://youtu.be/Tm4N5GcJRLI
 [setup your fleet here]:https://youtu.be/Tm4N5GcJRLI
+
+[Watch it on YouTube here]:https://youtu.be/HTdSyrU7SBQ
+[OneDrive]:https://uctcloud-my.sharepoint.com/:v:/g/personal/mdnave001_myuct_ac_za/EWj5S8mYaG5NjAJC8wN7KokBREjG6kPqu2is6rZBHVAOpQ
