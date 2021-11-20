@@ -11,6 +11,9 @@ On start-up pi1 sends a connection request to pi2 on failing to establish the co
 ## How to push the code to Balena and Run it in your pi1
 Assuming that you already set-up your pi1 with balena os and you have your pi1 fleet on the Balena Web portal.
 
+
+Learn how to [setup your fleet here]
+
 You will need to clone this repo locally:
 ```
 $ git clone https://github.com/ZolileMdingi/Prac_6/tree/main/Prac6-master_pi1
@@ -41,3 +44,4 @@ Flow this link [deploy to your fleet method 2] or watch [YouTube Tutorial] times
 [pi2-server]:https://github.com/ZolileMdingi/Prac_6/tree/main/Prac6-Server-master_pi2
 [deploy to your fleet method 2]:https://www.balena.io/docs/learn/deploy/deployment/#:~:text=You%20can%20find%20the%20fleet,run%20git%20push%20balena%20master%20.
 [YouTube Tutorial]:https://youtu.be/Tm4N5GcJRLI
+[setup your fleet here]:https://youtu.be/Tm4N5GcJRLI
