@@ -15,15 +15,25 @@ You will need to clone this repo locally:
 ```
 $ git clone https://github.com/ZolileMdingi/Prac_6/tree/main/Prac6-master_pi1
 ```
-Then add your balena application's remote:
+Open your terminal if on Linux or cmd in windows directly Prac6-master_pi1 folder.
+Then Login to your Balena web portal client (Select Web authorization as is recommended):
 ```
-$ git remote add balena username@git.balena-cloud.com:username/myapp.git
+$ balena login
 ```
-and push the code to the newly added remote:
+Next run this command to display your fleets if you have forgetten your fleets names( Take a note of your fleets name):
 ```
-$ git push balena master
+$ balena fleets
 ```
-It should take a few minutes for the code to push. Enable device URLs so we can see the server outside of our local network. This option can be toggled on the device summary page or in the `Actions` tab in your device dashboards.
+and push the code to the rightful fleet:
+```
+$ balena push <fleetName>
+```
+It should take a few minutes for the code to push. Once you see a Unicorn it means its done pushing.
+You can go do the same thing for the [pi2-server]
 
-Then in your browser you should be able to open the device URL and see the message "Hello World!".
+## Alternative to Deploy to your fleet
+Flow this link [deploy to your fleet method 2] or watch [YouTube Tutorial] timestamp 3:23
 
+[pi2-server]:https://github.com/ZolileMdingi/Prac_6/tree/main/Prac6-Server-master_pi2
+[deploy to your fleet method 2]:https://www.balena.io/docs/learn/deploy/deployment/#:~:text=You%20can%20find%20the%20fleet,run%20git%20push%20balena%20master%20.
+[YouTube Tutorial]:https://youtu.be/Tm4N5GcJRLI
