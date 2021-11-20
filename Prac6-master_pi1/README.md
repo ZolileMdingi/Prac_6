@@ -1,5 +1,8 @@
 # Pi1 Client-fleet source code
 
+## Watch Application Demostration video of 6 functionality
+[Watch it on YouTube here] alternative [OneDrive]
+
 ## Overview functionality of pi1 client code
 Pi1 is responsible for collecting the data that it is receiving from the Light Dependent Resistor (LDR) and the temperature sensors and send this data to Pi2. All the code for reading the LDR & Temperature Sensor, connecting to pi2, listening to pi2 commands and sending the data to pi2 can be found in the client.py file. 
 
@@ -45,3 +48,5 @@ Flow this link [deploy to your fleet method 2] or watch [YouTube Tutorial] times
 [deploy to your fleet method 2]:https://www.balena.io/docs/learn/deploy/deployment/#:~:text=You%20can%20find%20the%20fleet,run%20git%20push%20balena%20master%20.
 [YouTube Tutorial]:https://youtu.be/Tm4N5GcJRLI
 [setup your fleet here]:https://youtu.be/Tm4N5GcJRLI
+[Watch it on YouTube here]:https://youtu.be/HTdSyrU7SBQ
+[OneDrive]:https://uctcloud-my.sharepoint.com/:v:/g/personal/mdnave001_myuct_ac_za/EWj5S8mYaG5NjAJC8wN7KokBREjG6kPqu2is6rZBHVAOpQ
